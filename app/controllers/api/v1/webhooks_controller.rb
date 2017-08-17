@@ -27,6 +27,11 @@ module Api
         logger.info order
         if 'help' == order[1]
           response = {'text' => "次のコマンドが有効です。#{@webhook.trigger_word} help \n #{@webhook.trigger_word} post <url> \n "}
+        elsif 'email' == order[1]
+          p '@@@@@@@@@@@@@@@@@@@@@@@'
+          p '@@@@@@@@@@@@@@@@@@@@@@@'
+          ReportMailer.report_email.deliver
+          response = {'text' => "I sent an e-mail"}
         elsif 'post' == order[1]
           url = order[2].delete('<').delete('>').chomp
           html = parse_html url
