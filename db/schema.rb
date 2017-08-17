@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170817001911) do
+ActiveRecord::Schema.define(version: 20170817045558) do
 
   create_table "articles", force: :cascade do |t|
     t.string "url"
@@ -24,6 +24,21 @@ ActiveRecord::Schema.define(version: 20170817001911) do
 
   create_table "reports", force: :cascade do |t|
     t.date "deliver_date"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "webhooks", force: :cascade do |t|
+    t.string "token"
+    t.string "team_id"
+    t.string "team_domain"
+    t.string "channel_id"
+    t.string "channel_name"
+    t.datetime "timestamp"
+    t.string "user_id"
+    t.string "user_name"
+    t.string "text"
+    t.string "trigger_word"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
