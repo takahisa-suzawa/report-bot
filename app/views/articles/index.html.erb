@@ -1,0 +1,35 @@
+<div class="page-header">
+  <%= link_to new_article_path, class: 'btn btn-primary' do %>
+    <span class="glyphicon glyphicon-plus"></span>
+    New Article
+  <% end %>
+  <h1>Listing articles</h1>
+</div>
+
+<div class="table-responsive">
+  <table class="table table-striped table-bordered table-hover">
+    <thead>
+      <tr>
+            <th>Url</th>
+            <th>Title</th>
+            <th>Opening</th>
+            <th>Report</th>
+            <th></th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <%= content_tag_for(:tr, @articles) do |article| %>
+            <td><%= article.url %></td>
+            <td><%= article.title %></td>
+            <td><%= article.opening %></td>
+            <td><%= article.Report %></td>
+            <td><%= link_to 'Show', article %></td>
+        <td><%= link_to 'Edit', edit_article_path(article) %></td>
+        <td><%= link_to 'Destroy', article, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      <% end %>
+    </tbody>
+  </table>
+</div>
