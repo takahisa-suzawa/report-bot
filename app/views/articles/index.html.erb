@@ -1,5 +1,5 @@
 <div class="page-header">
-  <%= link_to new_article_path, class: 'btn btn-primary' do %>
+  <%= link_to new_report_article_path, class: 'btn btn-primary' do %>
     <span class="glyphicon glyphicon-plus"></span>
     New Article
   <% end %>
@@ -27,7 +27,7 @@
             <td><%= article.opening %></td>
             <td><%= article.Report %></td>
             <td><%= link_to 'Show', article %></td>
-        <td><%= link_to 'Edit', edit_article_path(article) %></td>
+        <td><%= link_to 'Edit', edit_report_article_path(article) %></td>
         <td><%= link_to 'Destroy', article, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       <% end %>
     </tbody>

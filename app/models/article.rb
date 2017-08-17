@@ -1,3 +1,3 @@
 class Article < ApplicationRecord
-  belongs_to :Report
+  belongs_to :report
 end

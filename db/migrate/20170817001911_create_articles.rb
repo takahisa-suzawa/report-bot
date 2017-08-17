@@ -4,7 +4,7 @@ class CreateArticles < ActiveRecord::Migration[5.1]
       t.string :url
       t.string :title
       t.text :opening
-      t.references :Report, foreign_key: true
+      t.references :report, foreign_key: true
 
       t.timestamps
     end

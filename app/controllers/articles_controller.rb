@@ -4,7 +4,8 @@ class ArticlesController < ApplicationController
   # GET /articles
   # GET /articles.json
   def index
-    @articles = Article.all
+    @report = Report.find(params[:report_id])
+    @articles = @report.articles
   end
 
   # GET /articles/1
@@ -14,7 +15,9 @@ class ArticlesController < ApplicationController
 
   # GET /articles/new
   def new
-    @article = Article.new
+    @report = Report.find(params[:report_id])
+    p @report
+    @article = @report.articles.build
   end
 
   # GET /articles/1/edit
@@ -64,7 +67,8 @@ class ArticlesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_article
-      @article = Article.find(params[:id])
+      @report = Report.find(params[:report_id])
+      @article = @report.articles.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

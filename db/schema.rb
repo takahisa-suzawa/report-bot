@@ -16,10 +16,10 @@ ActiveRecord::Schema.define(version: 20170817001911) do
     t.string "url"
     t.string "title"
     t.text "opening"
-    t.integer "Report_id"
+    t.integer "report_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["Report_id"], name: "index_articles_on_Report_id"
+    t.index ["report_id"], name: "index_articles_on_report_id"
   end
 
   create_table "reports", force: :cascade do |t|

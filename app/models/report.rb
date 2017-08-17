@@ -1,3 +1,3 @@
 class Report < ApplicationRecord
-  has_many :Article
+  has_many :articles, dependent: :destroy
 end
