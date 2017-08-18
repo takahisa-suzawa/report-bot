@@ -14,7 +14,7 @@
     <% @reports.each do |report| %>
       <tr>
         <td><%= report.deliver_date %></td>
-        <td><%= link_to '記事一覧', report_articles_path(report) %></td>
+        <td><%= link_to '内容', report_path(report) %></td>
         <td><%= link_to '配信日変更', edit_report_path(report) %></td>
       </tr>
     <% end %>

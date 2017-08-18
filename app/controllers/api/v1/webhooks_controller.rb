@@ -27,6 +27,22 @@ module Api
         logger.info order
         if 'help' == order[1]
           response = {'text' => "次のコマンドが有効です。#{@webhook.trigger_word} help \n #{@webhook.trigger_word} post <url> \n "}
+        elsif 'info' == order[1]
+          text = order[2].chomp
+          if text =~ /^(```)(\S{1,})(```)$/ || text =~ /^(`)(\S{1,})(`)$/
+            text = $2
+          end
+          @report = Report.last
+          if @report.nil?
+            @report = Report.new
+          end
+          @information = @report.informations.build(:text => text)
+          if @information.save
+            response = {'text' => "I registered information"}
+          else
+            logger.error　@information.errors
+            response = {'text' => "sorry! Registration failed!"}
+          end
         elsif 'email' == order[1]
           ReportMailer.report_email.deliver
           response = {'text' => "I sent an e-mail"}
