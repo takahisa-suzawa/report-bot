@@ -1,6 +1,7 @@
 require 'open-uri'
 require 'nokogiri'
 require 'date'
+require 'active_support/time'
 
 module Api
   module V1
@@ -37,9 +38,14 @@ module Api
             # タイトルを表示
             title = html.title
 
-            @report = Report.last
+            day = Date.today
+            @report = Report.find_by('deliver_date >= ?', day)
             if @report.nil?
+              nextFriday = Time.current.beginning_of_week(:friday).since(1.week)
               @report = Report.new
+              p nextFriday.to_date
+              @report.deliver_date = nextFriday.to_date
+              p @report.deliver_date
             end
             @article = @report.articles.build(:url => url, :title => title)
             if @article.save
