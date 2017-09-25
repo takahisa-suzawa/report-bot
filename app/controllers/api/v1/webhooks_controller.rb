@@ -43,9 +43,7 @@ module Api
             if @report.nil?
               nextFriday = Time.current.beginning_of_week(:friday).since(1.week)
               @report = Report.new
-              p nextFriday.to_date
               @report.deliver_date = nextFriday.to_date
-              p @report.deliver_date
             end
             @article = @report.articles.build(:url => url, :title => title)
             if @article.save
