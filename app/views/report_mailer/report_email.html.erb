@@ -15,15 +15,10 @@
         <article>
         <header>
         <h1><%= article.title %></h1>
-        <p><time datetime="2011-12-13">2011-12-13</time></p>
         </header>
 
-        <p>HTML5になって新しく定義された新要素（タグ）が多くあります。今回は前回の使い方が変更になった要素の続きとして、・・・</p>
-        <p><a href="#">続きを見る</a></p>
+        <p><a href="<%= article.url %><">記事を見る</a></p>
 
-        <footer>
-        <p>カテゴリ：<a href="#">HTML5でサイトをつくろう</a></p>
-        </footer>
         </article>
       <% end %>
     </div>

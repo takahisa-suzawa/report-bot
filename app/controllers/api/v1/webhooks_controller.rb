@@ -24,7 +24,8 @@ module Api
         end
 
         # webhookの命令を実行する
-        order = @webhook.text.split(" ")
+        order = []
+        @webhook.text.each_line{|line| line.split(" ").each{|text| order << text}}
         logger.info order
         if 'help' == order[1]
           response = {'text' => "次のコマンドが有効です。#{@webhook.trigger_word} help \n #{@webhook.trigger_word} post <url> \n "}
@@ -38,6 +39,18 @@ module Api
             # タイトルを表示
             title = html.title
 
+            comment = ""
+            commentFlg = false
+            order.each do |text|
+              if text == '```'
+                commentFlg = !(commentFlg)
+              else 
+                if commentFlg
+                  comment = comment + text + '<br>'
+                end
+              end
+            end
+
             day = Date.today
             @report = Report.find_by('deliver_date >= ?', day)
             if @report.nil?
@@ -45,7 +58,7 @@ module Api
               @report = Report.new
               @report.deliver_date = nextFriday.to_date
             end
-            @article = @report.articles.build(:url => url, :title => title)
+            @article = @report.articles.build(:url => url, :title => title, :comment => comment)
             if @article.save
               response = {'text' => "I registered #{title}"}
             else

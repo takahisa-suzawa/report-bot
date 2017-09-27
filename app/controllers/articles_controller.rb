@@ -5,4 +5,9 @@ class ArticlesController < ApplicationController
     @articles = @report.articles
   end
 
+  def edit
+    @report = Report.find(params[:report_id])
+    @article = @report.articles.find(params[:id])
+  end
+
 end

@@ -17,6 +17,7 @@
             <td><%= article.url %></td>
             <td><%= article.title %></td>
             <td><%= article.opening %></td>
+            <td><%= link_to '記事修正', edit_report_article_path(@report, article) %></td>
       <% end %>
     </tbody>
   </table>
