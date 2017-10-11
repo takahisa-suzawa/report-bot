@@ -30,8 +30,11 @@ module Api
         if 'help' == order[1]
           response = {'text' => "次のコマンドが有効です。#{@webhook.trigger_word} help \n #{@webhook.trigger_word} post <url> \n "}
         elsif 'email' == order[1]
-          ReportMailer.report_email.deliver
-          response = {'text' => "I sent an e-mail"}
+          if ReportMailer.report_email.deliver
+            response = {'text' => "I sent an e-mail"}
+          else
+            response = {'text' => "sorry... Failed to send e-mail"}
+          end
         elsif 'post' == order[1]
           url = order[2].delete('<').delete('>').chomp
           html = parse_html url

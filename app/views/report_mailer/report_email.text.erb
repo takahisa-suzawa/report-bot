@@ -1,0 +1,21 @@
+週間セキュリ<%= @report.deliver_date.strftime("%Y年 %m月 %d日") %>号
+===============================================
+
+各位
+お疲れ様です。セキュリティ担当です。
+
+# お知らせ
+
+
+
+# セキュリティ記事
+<% @report.articles.each do |article| %>
+〜<%= article.title %>〜
+### 記事のURL
+<%= article.url %>
+
+### 投稿者コメント
+<%= article.comment %>
+
+<% end %>
+

@@ -6,6 +6,11 @@ class ReportMailer < ApplicationMailer
   def report_email
     day = Date.today
     @report = Report.find_by('deliver_date >= ?', day)
-    mail to: ENV['ML_TO'], subject: '[週間セキュリ]'
+    if @report.nil?
+      return false
+    else
+      mail to: ENV['ML_TO'], subject: '[週間セキュリ]'
+      return true
+    end
   end
 end
