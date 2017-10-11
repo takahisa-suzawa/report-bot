@@ -66,7 +66,7 @@ module Api
             end
             @article = @report.articles.build(:url => url, :title => title, :comment => comment)
             if @article.save
-              response = {'text' => "I registered #{title}"}
+              response = {'text' => "登録しました -> #{title} 配信日:#{@report.deliver_date.strftime('%Y/%m/%d')}"}
             else
               logger.error　@article.errors
               response = {'text' => "sorry! Registration failed!"}
