@@ -43,13 +43,16 @@ module Api
             title = html.title
 
             comment = ""
-            commentFlg = false
-            order.each do |text|
-              if text == '```'
-                commentFlg = !(commentFlg)
-              else 
-                if commentFlg
-                  comment = comment + text + '<br>'
+            
+            if order.length >= 4
+              commentFlg = false
+              order.each do |text|
+                if text == '```'
+                  commentFlg = !(commentFlg)
+                else 
+                  if commentFlg
+                    comment = comment + text + '<br>'
+                  end
                 end
               end
             end
