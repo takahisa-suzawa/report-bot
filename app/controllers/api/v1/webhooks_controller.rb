@@ -35,6 +35,10 @@ module Api
           else
             response = {'text' => "sorry... Failed to send e-mail"}
           end
+        elsif 'delete' == order[1]
+          url = order[2].delete('<').delete('>').chomp
+          Report.destroy_all('url == ?', url)
+          response = {'text' => "削除しました。"}
         elsif 'post' == order[1]
           url = order[2].delete('<').delete('>').chomp
           html = parse_html url
