@@ -37,7 +37,7 @@ module Api
           end
         elsif 'delete' == order[1]
           url = order[2].delete('<').delete('>').chomp
-          Article.delete_all('url == ?', url)
+          Article.delete_all(['url == ?', url])
           response = {'text' => "削除しました。"}
         elsif 'post' == order[1]
           url = order[2].delete('<').delete('>').chomp
