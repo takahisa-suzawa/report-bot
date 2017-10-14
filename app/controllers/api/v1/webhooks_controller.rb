@@ -28,7 +28,7 @@ module Api
         @webhook.text.each_line{|line| line.split(" ").each{|text| order << text}}
         logger.info order
         if 'help' == order[1]
-          response = {'text' => "次のコマンドが有効です。#{@webhook.trigger_word} help \n #{@webhook.trigger_word} post <url> \n "}
+          response = {'text' => "次のコマンドが有効です。#{@webhook.trigger_word} help \n #{@webhook.trigger_word} post <url> \n #{@webhook.trigger_word} delete <url> \n #{@webhook.trigger_word} email \n "}
         elsif 'email' == order[1]
           if ReportMailer.report_email.deliver
             response = {'text' => "I sent an e-mail"}
